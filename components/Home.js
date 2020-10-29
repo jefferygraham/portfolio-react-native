@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
 import Login from './Login';
@@ -11,6 +10,7 @@ import Answered from './Answered';
 import Unanswered from './Unanswered';
 import NewQuestion from './NewQuestion';
 import Leaderboard from './Leaderboard';
+import { handleInitialData } from '../actions/shared';
 
 const Drawer = createDrawerNavigator();
 
@@ -55,11 +55,25 @@ function Dashboard() {
 
 const Stack = createStackNavigator();
 
-export default function Home() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name='Would You Rather...' component={Login} />
-      <Stack.Screen name='Home' component={Sidebar} />
-    </Stack.Navigator>
-  );
+class Home extends Component {
+  componentDidMount() {
+    this.props.dispatch(handleInitialData());
+  }
+
+  render() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name='Would You Rather...' component={Login} />
+        <Stack.Screen
+          name='Home'
+          component={Sidebar}
+          options={({ route }) => ({
+            headerTitle: `${route.params.userId}`,
+          })}
+        />
+      </Stack.Navigator>
+    );
+  }
 }
+
+export default connect()(Home);
