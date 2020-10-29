@@ -6,6 +6,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Login from './Login';
 import Answered from './Answered';
 import Unanswered from './Unanswered';
+import NewQuestion from './NewQuestion';
+import Leaderboard from './Leaderboard';
 
 const Drawer = createDrawerNavigator();
 
@@ -13,6 +15,8 @@ function Sidebar() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name='Dashboard' component={Dashboard} />
+      <Drawer.Screen name='NewQuestion' component={NewQuestion} />
+      <Drawer.Screen name='Leaderboard' component={Leaderboard} />
     </Drawer.Navigator>
   );
 }
