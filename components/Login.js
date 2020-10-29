@@ -5,8 +5,6 @@ import { Card } from 'react-native-elements';
 function Login({ navigation }) {
   return (
     <Card containerStyle={{ alignItems: 'center' }}>
-      <Card.Title>Would You Rather....</Card.Title>
-      <Card.Divider />
       <Image
         source={require('../assets/would-you-rather.jpg')}
         resizeMode='contain'

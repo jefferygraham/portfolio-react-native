@@ -2,6 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import Login from './Login';
 import Answered from './Answered';
@@ -25,9 +28,27 @@ const Tab = createBottomTabNavigator();
 
 function Dashboard() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name='Answered' component={Answered} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Unanswered') {
+            iconName = focused ? 'check-square' : 'check-square-o';
+          } else if (route.name === 'Answered') {
+            iconName = focused ? 'question-circle' : 'question-circle-o';
+          }
+
+          return <FontAwesome name={iconName} size={size} color={color} />;
+        },
+      })}
+      tabBarOptions={{
+        activeTintColor: 'blue',
+        inactiveTintColor: 'red',
+      }}
+    >
       <Tab.Screen name='Unanswered' component={Unanswered} />
+      <Tab.Screen name='Answered' component={Answered} />
     </Tab.Navigator>
   );
 }
@@ -37,7 +58,7 @@ const Stack = createStackNavigator();
 export default function Home() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Would You Rather...' component={Login} />
       <Stack.Screen name='Home' component={Sidebar} />
     </Stack.Navigator>
   );
