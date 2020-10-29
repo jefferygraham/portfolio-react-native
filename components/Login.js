@@ -4,9 +4,17 @@ import { Text, Button, Image } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
 
+import { setAuthedUser } from '../actions/authedUser';
+
 class Login extends Component {
   state = {
-    chosenUser: null,
+    chosenUser: 'sarahedo',
+  };
+
+  handlePress = () => {
+    const { dispatch } = this.props;
+
+    dispatch(setAuthedUser(this.state.chosenUser));
   };
 
   render() {
@@ -43,11 +51,12 @@ class Login extends Component {
             marginBottom: 0,
           }}
           title='PLAY NOW'
-          onPress={() =>
+          onPress={() => {
             this.props.navigation.navigate('Home', {
               userId: this.state.chosenUser,
-            })
-          }
+            });
+            this.handlePress();
+          }}
         />
       </Card>
     );
