@@ -1,39 +1,40 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Login from './Login';
-import Dashboard from './Dashboard';
-
-const Stack = createStackNavigator();
+import Answered from './Answered';
+import Unanswered from './Unanswered';
 
 const Drawer = createDrawerNavigator();
 
-function MainNavigator() {
+function Sidebar() {
   return (
-    <Drawer.Navigator initialRouteName='Home'>
-      <Drawer.Screen name='Home' component={HomeNavigator} />
-      <Drawer.Screen name='Dashboard' component={DashboardNavigator} />
+    <Drawer.Navigator>
+      <Drawer.Screen name='Dashboard' component={Dashboard} />
     </Drawer.Navigator>
   );
 }
 
-function HomeNavigator() {
+const Tab = createBottomTabNavigator();
+
+function Dashboard() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='Home' component={Login} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen name='Answered' component={Answered} />
+      <Tab.Screen name='Unanswered' component={Unanswered} />
+    </Tab.Navigator>
   );
 }
 
-function DashboardNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name='Dashboard' component={Dashboard} />
-    </Stack.Navigator>
-  );
-}
+const Stack = createStackNavigator();
 
 export default function Home() {
-  return <MainNavigator />;
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Login' component={Login} />
+      <Stack.Screen name='Home' component={Sidebar} />
+    </Stack.Navigator>
+  );
 }
