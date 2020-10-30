@@ -3,6 +3,7 @@ import { Text, SafeAreaView, View } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
+import * as Progress from 'react-native-progress';
 
 class PollResults extends Component {
   render() {
@@ -12,8 +13,8 @@ class PollResults extends Component {
     const optionOneVotes = question.optionOne.votes.length;
     const optionTwoVotes = question.optionTwo.votes.length;
     const totalVotes = optionOneVotes + optionTwoVotes;
-    const optionOnePercentage = (optionOneVotes / totalVotes) * 100;
-    const optionTwoPercentage = (optionTwoVotes / totalVotes) * 100;
+    const optionOnePercentage = optionOneVotes / totalVotes;
+    const optionTwoPercentage = optionTwoVotes / totalVotes;
 
     return (
       <SafeAreaView>
@@ -29,6 +30,7 @@ class PollResults extends Component {
                   ) : null}
                 </Text>
               </View>
+              <Progress.Bar progress={optionOnePercentage} width={200} />
               <Text>
                 {optionOneVotes} out of {totalVotes} votes
               </Text>
@@ -42,6 +44,7 @@ class PollResults extends Component {
                   ) : null}
                 </Text>
               </View>
+              <Progress.Bar progress={optionTwoPercentage} width={200} />
               <Text>
                 {optionTwoVotes} out of {totalVotes} votes
               </Text>
