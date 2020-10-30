@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 
 import Question from './Question';
@@ -10,11 +10,13 @@ class Answered extends Component {
 
     const renderQuestion = ({ item }) => {
       return (
-        <Question
-          navigate={this.props.navigation.navigate}
-          id={item.id}
-          answered={true}
-        />
+        <SafeAreaView>
+          <Question
+            navigate={this.props.navigation.navigate}
+            id={item.id}
+            answered={true}
+          />
+        </SafeAreaView>
       );
     };
 
