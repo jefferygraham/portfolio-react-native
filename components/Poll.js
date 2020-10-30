@@ -9,10 +9,19 @@ import {
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 
+import { handleSaveQuestionAnswer } from '../actions/questions';
+
 class Poll extends Component {
   state = {
-    choice: '',
     pickOptionOne: true,
+  };
+
+  handlePress = (authedUser, id) => {
+    const answer = this.state.pickOptionOne ? 'optionOne' : 'optionTwo';
+    const { dispatch } = this.props;
+    dispatch(handleSaveQuestionAnswer(authedUser, id, answer));
+
+    this.props.navigation.push('Home', { userName: this.props.authedUser });
   };
 
   render() {
@@ -39,7 +48,9 @@ class Poll extends Component {
               trackColor={{ true: '#5637DD', false: null }}
               onValueChange={(value) => this.setState({ pickOptionOne: value })}
             />
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.handlePress(authedUser, questionId)}
+            >
               <Text>SUBMIT</Text>
             </TouchableOpacity>
           </View>
