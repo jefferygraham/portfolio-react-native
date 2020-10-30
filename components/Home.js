@@ -10,6 +10,8 @@ import Answered from './Answered';
 import Unanswered from './Unanswered';
 import NewQuestion from './NewQuestion';
 import Leaderboard from './Leaderboard';
+import Poll from './Poll';
+import PollResults from './PollResults';
 import { handleInitialData } from '../actions/shared';
 
 const Drawer = createDrawerNavigator();
@@ -68,7 +70,21 @@ class Home extends Component {
           name='Home'
           component={Sidebar}
           options={({ route }) => ({
-            headerTitle: `${route.params.userId}`,
+            headerTitle: route.params.userName,
+          })}
+        />
+        <Stack.Screen
+          name='Poll'
+          component={Poll}
+          options={({ route }) => ({
+            headerTitle: route.params.questionId,
+          })}
+        />
+        <Stack.Screen
+          name='PollResults'
+          component={PollResults}
+          options={({ route }) => ({
+            headerTitle: route.params.questionId,
           })}
         />
       </Stack.Navigator>

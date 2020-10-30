@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList, TouchableOpacity } from 'react-native';
-import { Card } from 'react-native-elements';
+import { FlatList } from 'react-native';
 import { connect } from 'react-redux';
+
+import Question from './Question';
 
 class Unanswered extends Component {
   render() {
@@ -9,16 +10,11 @@ class Unanswered extends Component {
 
     const renderQuestion = ({ item }) => {
       return (
-        <TouchableOpacity
-          delayPressIn={0}
-          // onPress={() =>
-          //   navigate('Deck', { deckTitle: item.title, deck: item })
-          // }
-        >
-          <Card containerStyle={{ alignItems: 'center' }}>
-            <Card.Title>{item.id}</Card.Title>
-          </Card>
-        </TouchableOpacity>
+        <Question
+          navigate={this.props.navigation.navigate}
+          id={item.id}
+          answered={false}
+        />
       );
     };
 
@@ -49,6 +45,7 @@ function mapStateToProps(state) {
     unAnsweredQuestionIds,
     authedUser: state.authedUser,
     questions: state.questions,
+    users: state.users,
   };
 }
 

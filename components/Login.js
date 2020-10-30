@@ -53,7 +53,7 @@ class Login extends Component {
           title='PLAY NOW'
           onPress={() => {
             this.props.navigation.navigate('Home', {
-              userId: this.state.chosenUser,
+              userName: this.props.users[this.state.chosenUser].name,
             });
             this.handlePress();
           }}
