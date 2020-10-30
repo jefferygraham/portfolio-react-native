@@ -21,35 +21,35 @@ class PollResults extends Component {
         <Card>
           <Card.Title>
             {users[questions[questionId].author].name} asked would you rather:
-            <View>
-              <View>
-                <Text>
-                  {question.optionOne.text}{' '}
-                  {users[authedUser].answers[questionId] === 'optionOne' ? (
-                    <FontAwesome name='check-square' />
-                  ) : null}
-                </Text>
-              </View>
-              <Progress.Bar progress={optionOnePercentage} width={200} />
-              <Text>
-                {optionOneVotes} out of {totalVotes} votes
-              </Text>
-            </View>
-            <View>
-              <View>
-                <Text>
-                  {question.optionTwo.text}{' '}
-                  {users[authedUser].answers[questionId] === 'optionTwo' ? (
-                    <FontAwesome name='check-square' />
-                  ) : null}
-                </Text>
-              </View>
-              <Progress.Bar progress={optionTwoPercentage} width={200} />
-              <Text>
-                {optionTwoVotes} out of {totalVotes} votes
-              </Text>
-            </View>
           </Card.Title>
+          <View>
+            <View>
+              <Text>
+                {question.optionOne.text}{' '}
+                {users[authedUser].answers[questionId] === 'optionOne' ? (
+                  <FontAwesome name='check-square' />
+                ) : null}
+              </Text>
+            </View>
+            <Progress.Bar progress={optionOnePercentage} width={200} />
+            <Text>
+              {optionOneVotes} out of {totalVotes} votes
+            </Text>
+          </View>
+          <View>
+            <View>
+              <Text>
+                {question.optionTwo.text}{' '}
+                {users[authedUser].answers[questionId] === 'optionTwo' ? (
+                  <FontAwesome name='check-square' />
+                ) : null}
+              </Text>
+            </View>
+            <Progress.Bar progress={optionTwoPercentage} width={200} />
+            <Text>
+              {optionTwoVotes} out of {totalVotes} votes
+            </Text>
+          </View>
         </Card>
       </SafeAreaView>
     );
