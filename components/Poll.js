@@ -5,8 +5,9 @@ import {
   SafeAreaView,
   Switch,
   TouchableOpacity,
+  StyleSheet,
 } from 'react-native';
-import { Card } from 'react-native-elements';
+import { Card, Avatar } from 'react-native-elements';
 import { connect } from 'react-redux';
 
 import { handleSaveQuestionAnswer } from '../actions/questions';
@@ -29,29 +30,46 @@ class Poll extends Component {
     const { users, questions, authedUser } = this.props;
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <Card>
           <Card.Title>
-            {users[questions[questionId].author].name} asks
+            {users[questions[questionId].author].name} asks would you rather:
           </Card.Title>
-          <Text>{users[questions[questionId].author].avatarURL}</Text>
+          <Card.Divider />
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar
+              size='medium'
+              rounded
+              source={{ uri: users[questions[questionId].author].avatarURL }}
+              containerStyle={{ borderWidth: 1, marginRight: 15 }}
+            />
 
-          <View>
             <Text>
               {this.state.pickOptionOne
                 ? questions[questionId].optionOne.text
                 : questions[questionId].optionTwo.text}
             </Text>
+          </View>
 
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Switch
               value={this.state.pickOptionOne}
-              trackColor={{ true: '#5637DD', false: null }}
+              trackColor={{ false: 'red', true: 'blue' }}
+              thumbColor={this.state.pickOptionOne ? 'red' : 'blue'}
               onValueChange={(value) => this.setState({ pickOptionOne: value })}
+              style={{ marginVertical: 15 }}
             />
             <TouchableOpacity
+              delayPressIn={0}
+              style={styles.button}
               onPress={() => this.handlePress(authedUser, questionId)}
             >
-              <Text>SUBMIT</Text>
+              <Text style={{ color: 'white' }}>SUBMIT</Text>
             </TouchableOpacity>
           </View>
         </Card>
@@ -59,6 +77,16 @@ class Poll extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#0077cc',
+    padding: 15,
+    borderRadius: 5,
+    marginHorizontal: 20,
+  },
+});
 
 function mapStateToProps(state) {
   return {

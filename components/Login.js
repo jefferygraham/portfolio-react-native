@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, Button, Image, SafeAreaView } from 'react-native';
+import {
+  Text,
+  Button,
+  Image,
+  SafeAreaView,
+  StyleSheet,
+  View,
+} from 'react-native';
 import { Card } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
 
@@ -19,21 +26,23 @@ class Login extends Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <Card containerStyle={{ alignItems: 'center' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <Card containerStyle={{ padding: 0, alignItems: 'center' }}>
           <Image
             source={require('../assets/would-you-rather.jpg')}
-            resizeMode='contain'
+            resizeMode='cover'
           />
-          <Text style={{ marginBottom: 10 }}>
-            The idea with React Native Elements is more about component
-            structure than actual design.
-          </Text>
+          <Text style={styles.baseText}>A game of preference!</Text>
+        </Card>
+        <View style={{ margin: 15 }}>
+          <View>
+            <Text style={{ textAlign: 'center', fontSize: 18 }}>
+              Choose a user:
+            </Text>
+          </View>
           <Picker
             selectedValue={this.state.chosenUser}
-            onValueChange={(user, itemIndex) =>
-              this.setState({ chosenUser: user })
-            }
+            onValueChange={(user) => this.setState({ chosenUser: user })}
           >
             {Object.keys(this.props.users).map((user) => (
               <Picker.Item
@@ -44,14 +53,13 @@ class Login extends Component {
             ))}
           </Picker>
           <Button
-            // icon={<Icon name='code' color='#ffffff' />}
             buttonStyle={{
               borderRadius: 0,
               marginLeft: 0,
               marginRight: 0,
               marginBottom: 0,
             }}
-            title='PLAY NOW'
+            title='PLAY NOW!'
             onPress={() => {
               this.props.navigation.navigate('Home', {
                 userName: this.props.users[this.state.chosenUser].name,
@@ -59,11 +67,20 @@ class Login extends Component {
               this.handlePress();
             }}
           />
-        </Card>
+        </View>
       </SafeAreaView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  baseText: {
+    margin: 10,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+});
 
 function mapStateToProps(state) {
   return {

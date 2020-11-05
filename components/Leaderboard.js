@@ -7,7 +7,7 @@ class Leaderboard extends Component {
   render() {
     const { users, userInfo } = this.props;
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         {userInfo
           .sort((a, b) => b.totalScore - a.totalScore)
           .map((user) => (

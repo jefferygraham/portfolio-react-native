@@ -10,7 +10,7 @@ class Unanswered extends Component {
 
     const renderQuestion = ({ item }) => {
       return (
-        <SafeAreaView>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
           <Question
             navigate={this.props.navigation.navigate}
             id={item.id}

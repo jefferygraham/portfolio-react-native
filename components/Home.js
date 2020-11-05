@@ -69,23 +69,23 @@ class Home extends Component {
         <Stack.Screen
           name='Home'
           component={Sidebar}
-          options={({ route }) => ({
-            headerTitle: route.params.userName,
-          })}
+          // options={({ route }) => ({
+          //   headerTitle: route.params.userName,
+          // })}
         />
         <Stack.Screen
           name='Poll'
           component={Poll}
-          options={({ route }) => ({
-            headerTitle: route.params.questionId,
-          })}
+          // options={({ route }) => ({
+          //   headerTitle: route.params.questionId,
+          // })}
         />
         <Stack.Screen
           name='PollResults'
           component={PollResults}
-          options={({ route }) => ({
-            headerTitle: route.params.questionId,
-          })}
+          // options={({ route }) => ({
+          //   headerTitle: route.params.questionId,
+          // })}
         />
       </Stack.Navigator>
     );

@@ -17,7 +17,7 @@ class PollResults extends Component {
     const optionTwoPercentage = optionTwoVotes / totalVotes;
 
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <Card>
           <Card.Title>
             {users[questions[questionId].author].name} asked would you rather:

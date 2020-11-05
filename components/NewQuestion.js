@@ -26,7 +26,7 @@ class NewQuestion extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
         <Card>
           <Card.Title>Create New Question</Card.Title>
           <Card.Divider />
