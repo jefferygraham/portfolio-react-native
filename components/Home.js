@@ -14,14 +14,34 @@ import Poll from './Poll';
 import PollResults from './PollResults';
 import { handleInitialData } from '../actions/shared';
 
+const NewQuestionStack = createStackNavigator();
+
+function NewQuestionStackScreen() {
+  return (
+    <NewQuestionStack.Navigator>
+      <NewQuestionStack.Screen name='New question' component={NewQuestion} />
+    </NewQuestionStack.Navigator>
+  );
+}
+
+const LeaderBoardStack = createStackNavigator();
+
+function LeaderBoardStackScreen() {
+  return (
+    <LeaderBoardStack.Navigator>
+      <LeaderBoardStack.Screen name='Leaderboard' component={Leaderboard} />
+    </LeaderBoardStack.Navigator>
+  );
+}
+
 const Drawer = createDrawerNavigator();
 
 function Sidebar() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name='Dashboard' component={Dashboard} />
-      <Drawer.Screen name='NewQuestion' component={NewQuestion} />
-      <Drawer.Screen name='Leaderboard' component={Leaderboard} />
+      <Drawer.Screen name='New Question' component={NewQuestionStackScreen} />
+      <Drawer.Screen name='Leaderboard' component={LeaderBoardStackScreen} />
     </Drawer.Navigator>
   );
 }
@@ -66,27 +86,9 @@ class Home extends Component {
     return (
       <Stack.Navigator>
         <Stack.Screen name='Would You Rather...' component={Login} />
-        <Stack.Screen
-          name='Home'
-          component={Sidebar}
-          // options={({ route }) => ({
-          //   headerTitle: route.params.userName,
-          // })}
-        />
-        <Stack.Screen
-          name='Poll'
-          component={Poll}
-          // options={({ route }) => ({
-          //   headerTitle: route.params.questionId,
-          // })}
-        />
-        <Stack.Screen
-          name='PollResults'
-          component={PollResults}
-          // options={({ route }) => ({
-          //   headerTitle: route.params.questionId,
-          // })}
-        />
+        <Stack.Screen name='Home' component={Sidebar} />
+        <Stack.Screen name='Poll' component={Poll} />
+        <Stack.Screen name='PollResults' component={PollResults} />
       </Stack.Navigator>
     );
   }

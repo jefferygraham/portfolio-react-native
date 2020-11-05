@@ -69,7 +69,7 @@ class Poll extends Component {
               style={styles.button}
               onPress={() => this.handlePress(authedUser, questionId)}
             >
-              <Text style={{ color: 'white' }}>SUBMIT</Text>
+              <Text>SUBMIT</Text>
             </TouchableOpacity>
           </View>
         </Card>
@@ -81,7 +81,7 @@ class Poll extends Component {
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: '#0077cc',
+    backgroundColor: '#ccc',
     padding: 15,
     borderRadius: 5,
     marginHorizontal: 20,

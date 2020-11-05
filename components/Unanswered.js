@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import Question from './Question';
@@ -10,7 +10,7 @@ class Unanswered extends Component {
 
     const renderQuestion = ({ item }) => {
       return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <SafeAreaView style={styles.container}>
           <Question
             navigate={this.props.navigation.navigate}
             id={item.id}
@@ -29,6 +29,13 @@ class Unanswered extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
 
 function mapStateToProps(state) {
   const unAnsweredQuestionIds = Object.keys(state.questions)
