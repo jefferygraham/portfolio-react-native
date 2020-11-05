@@ -19,7 +19,7 @@ const NewQuestionStack = createStackNavigator();
 function NewQuestionStackScreen() {
   return (
     <NewQuestionStack.Navigator>
-      <NewQuestionStack.Screen name='New question' component={NewQuestion} />
+      <NewQuestionStack.Screen name='New Question' component={NewQuestion} />
     </NewQuestionStack.Navigator>
   );
 }
@@ -77,6 +77,17 @@ function Dashboard() {
 
 const Stack = createStackNavigator();
 
+function Root() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Would You Rather...' component={Login} />
+      <Stack.Screen name='Home' component={Dashboard} />
+      <Stack.Screen name='Poll' component={Poll} />
+      <Stack.Screen name='PollResults' component={PollResults} />
+    </Stack.Navigator>
+  );
+}
+
 class Home extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData());
@@ -84,12 +95,11 @@ class Home extends Component {
 
   render() {
     return (
-      <Stack.Navigator>
-        <Stack.Screen name='Would You Rather...' component={Login} />
-        <Stack.Screen name='Home' component={Sidebar} />
-        <Stack.Screen name='Poll' component={Poll} />
-        <Stack.Screen name='PollResults' component={PollResults} />
-      </Stack.Navigator>
+      <Drawer.Navigator>
+        <Drawer.Screen name='Dashboard' component={Root} />
+        <Drawer.Screen name='New Question' component={NewQuestionStackScreen} />
+        <Drawer.Screen name='Leaderboard' component={LeaderBoardStackScreen} />
+      </Drawer.Navigator>
     );
   }
 }
